@@ -4,14 +4,10 @@
 #
 #-------------------------------------------------
 
-QT += core gui opengl widgets
-
+QT += core gui\
+      opengl widgets
 TARGET = HelloOpenGL
 TEMPLATE = app
-
-
 SOURCES += main.cpp
-
-HEADERS  += \
-    mywidget.h
+HEADERS  += mywidget.h
 
