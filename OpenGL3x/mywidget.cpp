@@ -58,7 +58,7 @@ GLuint MyWidget::prepareShaderProgram( const QString& vertexShaderPath,
             glGetShaderiv( shader, GL_INFO_LOG_LENGTH, &logSize );
             auto logMsg = unique_ptr<char>(new char[logSize]);
             glGetShaderInfoLog( shader, logSize, NULL, logMsg.get() );
-            qWarning() << logMsg;
+            qWarning() << logMsg.get();
 
             exit( EXIT_FAILURE );
         }
