@@ -9,7 +9,10 @@
 using namespace std;
 
 GLWindow::GLWindow( QSurfaceFormat surfaceFormat, QScreen *screen  )
-    : QWindow(screen)
+    : QWindow(screen),
+      glInitialized(false),
+      animating(false),
+      m_update_pending(false)
 {
     setSurfaceType( OpenGLSurface );
     setFormat( surfaceFormat );
@@ -22,7 +25,6 @@ GLWindow::GLWindow( QSurfaceFormat surfaceFormat, QScreen *screen  )
 
     // Make the context current on this window
     m_context->makeCurrent( this );
-
 }
 
 void GLWindow::exposeEvent(QExposeEvent *event)
@@ -78,8 +80,10 @@ void GLWindow::renderLater(){
 void GLWindow::renderNow()
 {
     m_context->makeCurrent(this);
-    paintGL();
-    m_context->swapBuffers(this);
+    if (glInitialized){
+        paintGL();
+        m_context->swapBuffers(this);
+    }
     m_update_pending = false;
     if (animating){
         renderLater();

@@ -16,7 +16,7 @@ private:
     GLuint prepareShaderProgram( const QString& vertexShaderPath,
                                const QString& fragmentShaderPath );
 
-    GLuint m_shader = 0;
-    GLuint m_vertexBuffer = 0;
+    GLuint m_shader;
+    GLuint m_vertexBuffer;
 };
 

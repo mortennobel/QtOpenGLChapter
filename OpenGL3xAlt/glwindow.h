@@ -21,9 +21,9 @@ protected:
     void exposeEvent(QExposeEvent *event);
 
 private:
-    bool glInitialized = false;
-    bool animating = false;
-    bool m_update_pending = false;
+    bool glInitialized;
+    bool animating;
+    bool m_update_pending;
     QOpenGLContext* m_context;
     QOpenGLPaintDevice *m_device;
 };

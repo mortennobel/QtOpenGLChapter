@@ -50,10 +50,10 @@ GLuint TriangleWindow::prepareShaderProgram( const QString& vertexShaderPath,
             qWarning() << s.filename << " failed to compile:" ;
             GLint  logSize;
             glGetShaderiv( shader, GL_INFO_LOG_LENGTH, &logSize );
-            auto logMsg = unique_ptr<char>(new char[logSize]);
-            glGetShaderInfoLog( shader, logSize, NULL, logMsg.get() );
-            qWarning() << logMsg.get();
-
+            auto logMsg = new char[logSize];
+            glGetShaderInfoLog( shader, logSize, NULL, logMsg );
+            qWarning() << logMsg;
+            delete[] logMsg;
             exit( EXIT_FAILURE );
         }
 
