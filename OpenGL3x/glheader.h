@@ -5,6 +5,7 @@
 #include <string>
 #include <QtGlobal>
 #if defined(Q_OS_WIN32) || defined(Q_OS_WIN64) || defined(Q_OS_WIN)
+#   define GLEW_STATIC
 #   include <GL/glew.h>
 #else
 #   include <OpenGL/gl3.h>

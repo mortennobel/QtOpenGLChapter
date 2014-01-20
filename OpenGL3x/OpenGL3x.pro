@@ -9,9 +9,16 @@ QT += core gui\
 
 CONFIG += c++11
 
-win32:INCLUDEPATH += "C:\Users\mono\Documents\glew-1.10.0\include"
-win32:LIBS += "C:\Users\mono\Documents\glew-1.10.0\lib\Release\x64\glew32.lib"
-
+win32{
+    INCLUDEPATH +=  "$${PWD}/../glew-1.10.0/include/"
+    !contains(QMAKE_TARGET.arch, x86_64) {
+        message("x86 build"   )
+        LIBS *=  "$${PWD}/../glew-1.10.0/lib/Release/Win32/glew32s.lib"
+    } else {
+        message("x86_64 build")
+        LIBS *=  "$${PWD}/../glew-1.10.0/lib/Release/x64/glew32s.lib"
+    }
+}
 
 TARGET = OpenGL3x
 TEMPLATE = app
